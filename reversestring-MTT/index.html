@@ -39,7 +39,6 @@
             font-size: 2rem;
             padding: 20px;
             border: none;
-            outline: none;
             background: rgba(255, 255, 255, 0.05);
             color: white;
             text-align: center;
@@ -48,12 +47,29 @@
             backdrop-filter: blur(10px);
         }
 
+        input:focus-visible {
+            outline: 3px solid #00e5ff;
+            outline-offset: 2px;
+        }
+
         .output {
             font-size: 8vw;
             font-weight: 700;
             letter-spacing: 5px;
             word-break: break-word;
             transition: transform 0.1s ease, color 0.2s ease;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         /* efecto glitch suave */
@@ -88,8 +104,9 @@
 <body>
 
     <div class="container">
+        <label for="inputText" class="sr-only">Texto a invertir</label>
         <input type="text" id="inputText" placeholder="Escribe algo..." autofocus />
-        <div class="output" id="outputText"></div>
+        <div class="output" id="outputText" aria-live="polite" aria-atomic="true"></div>
     </div>
 
     <script src="script.js"></script>

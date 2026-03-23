@@ -2,9 +2,23 @@ const input = document.getElementById("inputText");
 const output = document.getElementById("outputText");
 
 // Audio context (web audio API)
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+
+if (AudioContextCtor) {
+    try {
+        audioCtx = new AudioContextCtor();
+    } catch {
+        audioCtx = null;
+    }
+}
 
 function playTone(frequency) {
+    if (!audioCtx) return;
+    if (audioCtx.state === "suspended") {
+        void audioCtx.resume();
+    }
+
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
 
@@ -36,7 +50,11 @@ input.addEventListener("input", (e) => {
     const text = e.target.value;
 
     // Invertir string
-    const reversed = text.split("").reverse().join("");
+    const chars =
+        typeof Intl !== "undefined" && Intl.Segmenter
+            ? [...new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(text)].map(({ segment }) => segment)
+            : Array.from(text);
+    const reversed = chars.reverse().join("");
 
     output.textContent = reversed;
 
