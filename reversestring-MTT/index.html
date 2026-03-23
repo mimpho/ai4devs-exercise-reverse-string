@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+
+    <!-- Fuente moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: black;
+            color: white;
+            transition: background 0.4s ease;
+        }
+
+        .container {
+            text-align: center;
+            width: 90%;
+        }
+
+        input {
+            width: 100%;
+            font-size: 2rem;
+            padding: 20px;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .output {
+            font-size: 8vw;
+            font-weight: 700;
+            letter-spacing: 5px;
+            word-break: break-word;
+            transition: transform 0.1s ease, color 0.2s ease;
+        }
+
+        /* efecto glitch suave */
+        .glitch {
+            animation: glitch 0.2s;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(-2px, 2px);
+            }
+
+            50% {
+                transform: translate(2px, -2px);
+            }
+
+            75% {
+                transform: translate(-1px, 1px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <input type="text" id="inputText" placeholder="Escribe algo..." autofocus />
+        <div class="output" id="outputText"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
